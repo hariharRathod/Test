@@ -105,7 +105,7 @@ public class BallMechanics : MonoBehaviour
 
         if (other.CompareTag("OutPole"))
         {
-            Invoke("ResetPosition", 0.5f);
+            Invoke("ResetPosition",0.2f);
             _hasLauncedBall = false;
             _canLaunchBall = false;
         }
@@ -118,7 +118,7 @@ public class BallMechanics : MonoBehaviour
         {
             if (_hasLauncedBall)
             {
-                Invoke("ResetPosition", 0.5f);
+                Invoke("ResetPosition",0.2f);
                 _hasLauncedBall = false;
                 _canLaunchBall = false;
             }
