@@ -37,18 +37,17 @@ public class BallMechanics : MonoBehaviour
             {
                 print("In launch ball ");
                 Vector2 launchDir =_endPosition - _startPosition;
+                float launchSpeed = launchDir.magnitude * launchPower;
+                launchDir.Normalize();
                 _rb.isKinematic = false;
-                _rb.AddForce(launchDir * launchPower, ForceMode.Impulse);
-                _rb.AddTorque(launchDir * launchPower, ForceMode.Force);
+                _rb.AddForce(launchDir * launchSpeed, ForceMode.Impulse);
+                _rb.AddTorque(launchDir * launchSpeed, ForceMode.Force);
                 _hasLauncedBall = true;
                
             }
         }
 
-       /* if (IsBallOnGround() && _rb.velocity.magnitude < 0.1f)
-        {
-            _canLaunchBall = true;
-        }*/
+       
     }
 
     private Vector2 GetMousePositionInWorld()
@@ -61,7 +60,7 @@ public class BallMechanics : MonoBehaviour
     private bool IsBallOnGround()
     {
         RaycastHit hit;
-        float raycastDistance = 0.6f; // Adjust this distance based on the size of your ball
+        float raycastDistance = 0.6f; 
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance))
         {
